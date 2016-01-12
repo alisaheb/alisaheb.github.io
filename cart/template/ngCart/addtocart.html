@@ -1,0 +1,36 @@
+
+<div ng-hide="attrs.id">
+    <a class="btn btn-lg btn-primary" ng-disabled="true" ng-transclude></a>
+
+</div>
+<div ng-show="attrs.id">
+    <div>
+        <span ng-show="quantityMax">
+            <select name="quantity" id="quantity" ng-model="q"
+                    ng-options=" v for v in qtyOpt"></select>
+        </span>
+           <!-- ng-click="ngCart.addItem(id, name, price, q, data)" -->
+        <a class="btn btn-sm btn-primary"
+            ng-click="open(id, name, price, data)"
+           ng-transclude></a>
+    </div>
+    <mark  ng-show="inCart()">
+        This item is in your cart. <a ng-click="ngCart.removeItemById(id)" style="cursor: pointer;">Remove</a>
+    </mark>
+
+</div>
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">{{item.name}}</h3>
+    </div>
+    <div class="modal-body">
+        <p>{{item.snippet}}</p>
+        <label class="control-label">Qty</label>   
+        <input type="text" class="form-control" ng-model="qty"/>   
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok(qty)">buy</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
